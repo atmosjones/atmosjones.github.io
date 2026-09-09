@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>RISK</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen@1.6.0/Control.FullScreen.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.fullscreen@1.6.0/Control.FullScreen.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        :root {
+            --bg-body: #f4f5f7;
+            --bg-sidebar: rgba(255,255,255,0.04);
+            --bg-panel: rgba(255,255,255,0.08);
+            --bg-select: #252538;
+            --text-main: #ffffff;
+            --text-muted: #bbbbbb;
+            --accent: #4ecdc4;
+            --border: rgba(255,255,255,0.1);
+            --popup-bg: #1a1a2e;
+            --popup-text: #ffffff;
+            --header-color: #1a1a2e;
+        }
+    </style>
+</head>
+<body class="loading-active">
+    <div id="loader"></div>
+    <div id="container">
+        <div id="header">
+            <div class="header-left">
+                <button class="btn-sidebar-toggle" id="btn-sidebar-toggle" title="Show / hide panel" aria-label="Show / hide panel">☰</button>
+                
+                <h2 style="font-weight:500; font-size:20px;">RISK</h2>
+            </div>
+            <div>
+                <select id="fondSelector" onchange="changerFond()"
+                    style="padding:6px 12px; border-radius:6px; background:var(--bg-select);
+                           color:var(--text-main); border:1px solid var(--border); cursor:pointer;">
+                    <option value="BASE">Configured basemap</option>
+                    <option value="OSM">🌍 OpenStreetMap</option>
+                    <option value="SAT">🛰️ Google Satellite</option>
+                </select>
+            </div>
+        </div>
+        <div id="main-zone">
+            <div id="sidebar-overlay"></div>
+            <div id="sidebar">
+                <h3>Legend &amp; Layers</h3>
+                <div id="legende-toolbar">
+                    <button class="btn-legende-toolbar" onclick="toutDeplierLegende()">▾ Expand all</button>
+                    <button class="btn-legende-toolbar" onclick="toutReplierLegende()">▸ Collapse all</button>
+                </div>
+                <div id="legende-liste"></div>
+
+                <div id="filtre-panel">
+                    <h3>🔎 Attribute filter</h3>
+                    <div class="filtre-row">
+                        <label>Layer</label>
+                        <select id="filtre-couche" class="filtre-select" onchange="filtreChangerCouche()">
+                            <option value="">-- Choose a layer --</option>
+                        </select>
+                    </div>
+                    <div class="filtre-row">
+                        <label>Field</label>
+                        <select id="filtre-champ" class="filtre-select" onchange="filtreChangerChamp()">
+                            <option value="">-- Choose a field --</option>
+                        </select>
+                    </div>
+                    <div class="filtre-row">
+                        <label>Operator</label>
+                        <select id="filtre-operateur" class="filtre-select">
+                            <option value="eq">= (equal to)</option>
+                            <option value="neq">≠ (different from)</option>
+                            <option value="contains">⊃ contains</option>
+                            <option value="starts">starts with</option>
+                            <option value="gt">&gt; (greater than)</option>
+                            <option value="lt">&lt; (less than)</option>
+                            <option value="gte">≥ (greater or equal)</option>
+                            <option value="lte">≤ (less or equal)</option>
+                        </select>
+                    </div>
+                    <div class="filtre-row">
+                        <label>Value</label>
+                        <input id="filtre-valeur" class="filtre-input" type="text"
+                               placeholder="Type or click a value..." oninput="filtreValeurInput()" />
+                        <div id="filtre-valeurs-liste" class="filtre-valeurs-liste" style="display:none;"></div>
+                    </div>
+                    <div class="filtre-btns">
+                        <button class="btn-filtre btn-appliquer" onclick="appliquerFiltre()">✔ Apply</button>
+                        <button class="btn-filtre btn-reset" onclick="reinitialiserFiltre()">✖ Reset</button>
+                    </div>
+                    <div id="filtre-resultat"></div>
+                </div>
+            </div>
+            <div id="map">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
