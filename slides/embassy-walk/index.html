@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="embassy_walk_files/libs/clipboard/clipboard.min.js"></script>
+<script src="embassy_walk_files/libs/quarto-html/tabby.min.js"></script>
+<script src="embassy_walk_files/libs/quarto-html/popper.min.js"></script>
+<script src="embassy_walk_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="embassy_walk_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="embassy_walk_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="embassy_walk_files/libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
+
+  <title>GIS Halloween Spooktacular</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="embassy_walk_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="embassy_walk_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="embassy_walk_files/libs/revealjs/dist/theme/quarto-c83b259914f785bcfde1e10b7192ea40.css">
+  <link href="embassy_walk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="embassy_walk_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="embassy_walk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="embassy_walk_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="embassy_walk_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="embassy_walk_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="images/pumpkin.jpg" data-background-opacity="0.45" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">GIS Halloween Spooktacular</h1>
+  <p class="subtitle">Geocoding and the traveling salesman problem</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="a-d.c.-tradition-embassy-trick-or-treating" class="slide level2" data-background-image="images/embassy_map_dark2.png" data-background-size="cover" data-background-position="right center">
+<h2>A D.C. tradition: embassy trick-or-treating</h2>
+<div class="over-map">
+<ul>
+<li>About <strong>175 embassies</strong> in D.C., most along Massachusetts Avenue (“Embassy Row”)</li>
+<li><strong>Question:</strong> what is the shortest walk that visits every one and returns to the start?</li>
+</ul>
+<p>Two GIS problems:</p>
+<ol type="1">
+<li><strong>Geocoding</strong>: we have addresses, not coordinates</li>
+<li><strong>Routing</strong>: the order of the stops</li>
+</ol>
+</div>
+</section>
+<section>
+<section id="step-1-geocoding" class="title-slide slide level1 center" data-background-color="#1f1426">
+<h1>Step 1: Geocoding</h1>
+
+</section>
+<section id="addresses-to-coordinates" class="slide level2">
+<h2>Addresses to coordinates</h2>
+<p><strong>Geocoding</strong> matches a text address to a location, usually by interpolating along a street segment’s address range.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Geocoder</th>
+<th>Coverage</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>U.S. Census Geocoder</strong></td>
+<td>U.S.</td>
+<td>Free, no account, <strong>10,000 addresses per upload</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Nominatim</strong> (OpenStreetMap)</td>
+<td>World</td>
+<td>Free; one request per second; best with <em>structured</em> fields</td>
+</tr>
+<tr class="odd">
+<td><strong>DC Master Address Repository</strong></td>
+<td>D.C.</td>
+<td>Authoritative D.C. addresses</td>
+</tr>
+<tr class="even">
+<td>Google, Esri</td>
+<td>World</td>
+<td>Accurate, but paid and licence-restricted</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-geocodes" class="slide level2">
+<h2>Check your geocodes</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<p><img data-src="images/geocode_check.png" alt="Map comparing Nominatim and Census geocoder locations for 172 embassies, with lines joining pairs more than 100 m apart"></p>
+</div><div class="column" style="width:42%;">
+<ul>
+<li><strong>113 of 172</strong> landed over 100 m away (median 1.9 km)</li>
+<li>Albania and Armenia both landed on <strong>Madame Tussauds</strong>, which has “Washington DC” in its name</li>
+<li>The Census geocoder slips too: the House of Sweden, <strong>2900 K St NW</strong>, came back as K St <strong>SE</strong>, 8 km away</li>
+</ul>
+</div></div>
+</section>
+<section id="geocoding-in-practice" class="slide level2">
+<h2>Geocoding in practice</h2>
+<ol type="1">
+<li>Save the addresses as a CSV with <strong>no header</strong>: <code>id, street, city, state, zip</code></li>
+<li>Upload to the <strong>Census batch geocoder</strong>: geocoding.geo.census.gov ▸ <em>Address Batch</em></li>
+<li>In QGIS: <strong>Layer ▸ Add Layer ▸ Add Delimited Text Layer</strong>, with the longitude and latitude as X and Y, CRS <strong>EPSG:4326</strong></li>
+<li><strong>Inspect every match that is not <em>Exact</em></strong>:
+<ul>
+<li>170 Exact, 3 Non_Exact (the House of Sweden), 1 Tie</li>
+<li>The tie was <strong>Dominica</strong>, whose embassy is at 1001 19th St N in <strong>Arlington, VA</strong>, outside D.C.</li>
+</ul></li>
+<li>Fix the failures by hand or with a second geocoder, e.g.&nbsp;a structured Nominatim query with <code>street</code>, <code>city</code> and <code>state</code> as separate fields</li>
+</ol>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Rule of thumb: geocoding is never finished until you have looked at the points on a map.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="step-2-the-best-route" class="title-slide slide level1 center" data-background-color="#1f1426">
+<h1>Step 2: The best route</h1>
+
+</section>
+<section id="walking-distance-not-straight-lines" class="slide level2">
+<h2>Walking distance, not straight lines</h2>
+<ul>
+<li>Build an <strong>origin–destination matrix</strong>: the walking distance between every pair of embassies along the street network</li>
+<li>QGIS: <strong>QNEAT3</strong> plugin ▸ <em>OD Matrix from Layers as Table (m:n)</em>
+<ul>
+<li>Network: D.C. <code>Roadway_Block</code> · Points: embassies (from and to) · ID field: <code>embassy</code></li>
+<li>Reproject everything to a metre-based CRS first, e.g.&nbsp;<strong>EPSG:26985</strong> (Maryland/D.C. State Plane)</li>
+</ul></li>
+<li>173 × 173 = <strong>29,929</strong> distances</li>
+<li>Walking is <strong>1.5 times</strong> the straight-line distance on our final route</li>
+</ul>
+</section>
+<section id="the-traveling-salesman-problem" class="slide level2">
+<h2>The traveling salesman problem</h2>
+<p>Visit every stop once and return home, by the shortest route.</p>
+<p><span class="math display">\[
+number \: of \: possible \: routes = \frac{(n − 1)!}{2}
+\]</span></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Stops</th>
+<th style="text-align: right;">Possible tours</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">181,440</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">6 × 10<sup>16</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>173</strong></td>
+<td style="text-align: right;"><strong>10<sup>311</sup></strong></td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:60%;">
+<ul>
+<li>Trying every tour is hopeless: 10<sup>311</sup> is far more than the ~10<sup>80</sup> atoms in the universe</li>
+<li>Exact solvers exist (Concorde has solved 85,900 stops), but in practice we use <strong>heuristics</strong>: fast methods that find a good tour, not a guaranteed best one</li>
+</ul>
+</div></div>
+</section>
+<section id="heuristic-1-nearest-neighbor" class="slide level2">
+<h2>Heuristic 1: nearest neighbor</h2>
+<p>Always walk to the closest embassy you have not visited yet.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>route <span class="op">=</span> [START]</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">len</span>(not_visited) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>    here <span class="op">=</span> route[<span class="op">-</span><span class="dv">1</span>]                    <span class="co"># where we are now</span></span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>    closest <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> embassy <span class="kw">in</span> not_visited:         <span class="co"># find the closest unvisited embassy</span></span>
+<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> closest <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> distance[(here, embassy)] <span class="op">&lt;</span> distance[(here, closest)]:</span>
+<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a>            closest <span class="op">=</span> embassy</span>
+<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a>    route.append(closest)               <span class="co"># walk there</span></span>
+<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a>    not_visited.remove(closest)         <span class="co"># and cross it off</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Simple and fast, but <strong>greedy</strong>: early choices strand far-away embassies until the end, which forces long legs back across the city</li>
+<li>From Canada: <strong>76.9 km</strong>. The result depends on the start: 76.5 to 88.3 km across all 173 starting embassies</li>
+</ul>
+</section>
+<section id="heuristic-2-2-opt" class="slide level2">
+<h2>Heuristic 2: 2-opt</h2>
+
+<img data-src="images/two_opt.png" alt="Diagram of a 2-opt move: two crossing legs a-b and c-d are replaced by a-c and b-d by reversing the stretch between them" class="r-stretch"><ul>
+<li>Take two legs of the tour, <strong>a–b</strong> and <strong>c–d</strong>. If <strong>a–c</strong> plus <strong>b–d</strong> is shorter, reverse the stretch from b to c</li>
+<li>Repeat until no swap helps. The tour no longer crosses itself</li>
+<li>A <strong>local</strong> optimum: good, but not guaranteed to be the best possible tour</li>
+</ul>
+</section>
+<section id="opt-in-the-qgis-python-console" class="slide level2">
+<h2>2-opt in the QGIS Python console</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>improved <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> improved:</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    improved <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(route) <span class="op">-</span> <span class="dv">2</span>):</span>
+<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(route) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>            A, B <span class="op">=</span> route[i <span class="op">-</span> <span class="dv">1</span>], route[i]</span>
+<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>            C, D <span class="op">=</span> route[j], route[j <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> distance[(A, C)] <span class="op">+</span> distance[(B, D)] <span class="op">&lt;</span> distance[(A, B)] <span class="op">+</span> distance[(C, D)]:</span>
+<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a>                middle <span class="op">=</span> route[i:j <span class="op">+</span> <span class="dv">1</span>]          <span class="co"># the piece B ... C</span></span>
+<span id="cb2-10"><a href="" aria-hidden="true" tabindex="-1"></a>                middle.reverse()                 <span class="co"># now C ... B</span></span>
+<span id="cb2-11"><a href="" aria-hidden="true" tabindex="-1"></a>                route <span class="op">=</span> route[:i] <span class="op">+</span> middle <span class="op">+</span> route[j <span class="op">+</span> <span class="dv">1</span>:]</span>
+<span id="cb2-12"><a href="" aria-hidden="true" tabindex="-1"></a>                improved <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Scripts: <strong>nearest_neighbor_simple.py</strong> and <strong>two_opt_simple.py</strong>. Click the OD table in the Layers panel, then <strong>Plugins ▸ Python Console ▸ Show Editor ▸ open ▸ Run</strong>.</p>
+</section>
+<section id="result" class="slide level2">
+<h2>Result</h2>
+<div class="columns">
+<div class="column" style="width:74%;">
+<style>
+.reveal .route-anim { display: flex; gap: 24px; justify-content: center; }
+.reveal .route-anim figure { margin: 0; text-align: center; }
+.reveal .route-anim .rt-title { font-weight: 600; font-size: 0.8em; color: #e8e8e8; }
+.reveal .route-anim .rt-km { font-size: 0.7em; color: #e8e8e8; opacity: 0; }
+.reveal .route-anim svg { display: block; }
+.reveal .route-anim path { fill: none; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+@keyframes rt-draw { to { stroke-dashoffset: 0; } }
+@keyframes rt-show { to { opacity: 1; } }
+html.print-pdf .route-anim path { stroke-dashoffset: 0; }
+html.print-pdf .route-anim .rt-km { opacity: 1; }
+.reveal section.present .route-anim .rt-nn path { animation: rt-draw 7.69s linear 0.6s forwards; }
+.reveal section.present .route-anim .rt-nn .rt-km { animation: rt-show 0.4s ease 8.29s forwards; }
+.reveal section.present .route-anim .rt-2opt path { animation: rt-draw 6.89s linear 0.6s forwards; }
+.reveal section.present .route-anim .rt-2opt .rt-km { animation: rt-show 0.4s ease 7.49s forwards; }
+</style>
+<div class="route-anim">
+<figure class="rt-nn">
+<div class="rt-title">
+Nearest neighbor
+</div>
+<svg viewbox="0 0 900 1251" style="height: 520px; width: auto;" role="img" aria-label="Nearest neighbor route, 76.9 km">
+<image href="images/route_bg.png" width="900" height="1251"></image> <path d="M828.0,1179.2 L820.9,1177.4 L799.9,1170.2 L778.5,1162.5 L757.4,1154.9 L746.5,1151.0 L735.6,1147.3 L719.6,1141.6 L719.6,1132.5 L719.8,1116.3 L719.8,1103.4 L719.7,1083.5 L712.3,1081.2 L695.5,1078.2 L695.4,1063.1 L695.5,1047.3 L689.9,1048.2 L695.5,1047.3 L678.1,1047.4 L668.2,1047.4 L647.8,1047.2 L641.6,1046.6 L647.8,1047.2 L641.6,1046.6 L647.8,1047.2 L627.3,1047.3 L627.2,1063.0 L617.5,1063.0 L616.8,1065.3 L617.5,1063.0 L617.6,1047.3 L611.7,1031.0 L610.7,1030.8 L611.7,1031.0 L605.7,1017.8 L600.1,1005.4 L595.3,994.8 L590.3,984.3 L592.1,989.9 L590.3,984.3 L594.3,984.3 L594.4,960.6 L601.7,963.1 L594.4,960.6 L594.4,952.4 L593.7,951.8 L594.4,952.4 L584.3,952.4 L580.8,945.8 L582.5,942.4 L580.8,945.8 L584.1,942.8 L580.8,945.8 L584.6,942.1 L580.8,945.8 L590.5,932.6 L590.3,931.7 L590.5,932.6 L594.5,927.2 L593.4,927.5 L594.5,927.2 L592.8,928.3 L594.5,927.2 L597.7,922.8 L597.9,923.9 L597.7,922.8 L599.7,921.6 L597.7,922.8 L600.2,920.8 L597.7,922.8 L605.0,912.9 L606.1,912.9 L605.0,912.9 L608.1,907.6 L605.0,912.9 L612.3,902.9 L610.4,904.3 L612.3,902.9 L609.6,905.4 L612.3,902.9 L605.0,912.9 L594.5,912.9 L576.1,912.9 L576.9,912.3 L576.1,912.9 L582.8,913.8 L576.1,912.9 L561.1,913.0 L558.2,912.9 L542.8,912.9 L533.2,912.9 L531.1,913.8 L533.2,912.9 L520.4,912.9 L519.0,913.8 L520.4,912.9 L516.4,913.8 L520.4,912.9 L516.3,912.3 L520.4,912.9 L511.7,912.3 L520.4,912.9 L520.4,903.0 L521.2,906.4 L520.4,903.0 L520.4,912.9 L523.6,924.3 L521.1,922.1 L523.6,924.3 L521.1,921.0 L523.6,924.3 L520.4,927.6 L519.4,928.1 L520.4,927.6 L519.1,926.4 L520.4,927.6 L518.8,926.2 L520.4,927.6 L518.2,927.6 L520.4,927.6 L517.9,927.5 L520.4,927.6 L517.1,925.5 L520.4,927.6 L514.4,925.9 L520.4,927.6 L531.4,932.6 L532.5,932.3 L531.4,932.6 L528.7,930.6 L531.4,932.6 L520.8,932.6 L519.6,932.6 L500.0,933.3 L501.4,932.5 L500.0,933.3 L500.9,923.1 L498.0,915.9 L496.4,915.6 L498.0,915.9 L503.6,912.2 L498.0,915.9 L494.5,912.9 L492.3,909.9 L494.5,912.9 L489.9,909.7 L494.5,912.9 L484.8,903.8 L484.7,902.8 L484.8,903.8 L484.8,905.0 L484.8,903.8 L484.4,902.5 L484.8,903.8 L480.0,899.4 L478.7,899.3 L480.0,899.4 L474.2,893.9 L474.2,892.9 L474.2,893.9 L474.2,895.1 L474.2,893.9 L470.4,891.5 L474.2,893.9 L470.5,889.5 L474.2,893.9 L467.7,886.8 L474.2,893.9 L465.3,886.7 L474.2,893.9 L480.7,893.1 L501.4,893.1 L500.6,894.0 L501.4,893.1 L520.5,893.1 L515.8,894.0 L520.5,893.1 L527.4,893.1 L531.3,893.1 L530.5,893.9 L531.3,893.1 L543.4,894.0 L542.5,894.1 L543.4,894.0 L543.4,892.9 L543.4,894.0 L547.7,889.3 L546.8,883.3 L545.8,867.9 L537.5,873.2 L545.8,867.9 L534.3,873.0 L545.8,867.9 L541.7,857.5 L540.2,851.6 L541.7,857.5 L536.6,844.6 L529.9,846.5 L536.6,844.6 L552.5,838.3 L554.8,842.0 L553.1,841.8 L554.8,842.0 L552.5,838.3 L536.6,844.6 L515.2,853.1 L512.5,853.4 L515.2,853.1 L519.3,852.4 L515.2,853.1 L501.4,858.3 L501.4,854.3 L497.1,853.6 L501.4,854.3 L501.4,858.3 L501.4,863.9 L501.3,872.7 L480.7,873.4 L477.3,874.2 L480.7,873.4 L453.2,874.2 L449.2,871.6 L453.2,874.2 L450.1,870.4 L453.2,874.2 L445.8,866.3 L453.2,874.2 L437.4,859.4 L442.8,863.5 L437.4,859.4 L446.0,850.3 L451.5,843.3 L446.0,850.3 L452.9,856.8 L450.8,856.1 L452.9,856.8 L446.0,850.3 L437.4,859.4 L431.3,853.6 L413.3,836.8 L412.5,837.7 L413.3,836.8 L408.7,832.4 L406.5,831.5 L408.7,832.4 L405.0,830.1 L408.7,832.4 L402.4,825.6 L408.7,832.4 L411.0,812.2 L388.8,814.9 L411.0,812.2 L408.7,832.4 L371.2,795.6 L371.7,794.7 L371.2,795.6 L337.7,756.8 L336.7,751.4 L337.7,756.8 L338.2,746.6 L337.7,756.8 L328.7,755.2 L325.0,753.4 L321.8,751.0 L321.8,750.0 L321.8,751.0 L325.0,753.4 L328.7,755.2 L305.1,766.7 L299.5,771.7 L305.1,766.7 L290.6,766.0 L278.8,766.0 L266.6,766.1 L266.6,751.7 L265.9,758.9 L266.6,751.7 L278.9,751.7 L278.9,732.0 L290.6,731.9 L290.6,721.8 L288.7,721.2 L290.6,721.8 L301.4,732.0 L314.0,732.0 L325.7,732.0 L337.4,732.0 L368.1,762.3 L365.0,775.1 L368.1,762.3 L398.4,788.1 L400.8,777.0 L401.7,763.7 L410.7,754.8 L427.6,771.6 L436.4,784.3 L427.6,771.6 L444.6,770.7 L445.6,779.2 L444.6,770.7 L427.6,771.6 L428.4,732.2 L428.3,697.1 L427.2,697.4 L428.3,697.1 L440.8,700.4 L452.4,703.4 L464.6,706.7 L473.8,726.9 L480.0,740.7 L484.0,749.6 L492.1,767.4 L517.6,823.4 L525.4,831.5 L520.4,837.2 L525.4,831.5 L519.7,837.5 L525.4,831.5 L529.3,832.9 L536.6,844.6 L541.7,857.5 L545.8,867.9 L522.8,878.9 L534.0,873.2 L522.8,878.9 L524.2,883.2 L527.4,893.1 L531.3,893.1 L543.4,894.0 L542.8,912.9 L542.9,922.8 L542.8,932.6 L542.8,937.7 L561.0,945.8 L557.9,945.3 L561.0,945.8 L556.6,944.7 L561.0,945.8 L561.0,952.4 L561.0,966.7 L560.6,973.5 L560.9,984.4 L560.8,1005.5 L560.1,1006.4 L560.8,1005.5 L561.7,998.4 L560.8,1005.5 L542.6,1005.9 L534.0,1010.1 L520.1,1010.7 L517.6,1010.0 L520.1,1010.7 L520.2,995.1 L519.4,998.8 L520.2,995.1 L520.1,1010.7 L519.3,1030.8 L510.6,1041.3 L512.0,1040.8 L510.6,1041.3 L505.5,1040.1 L500.2,1044.4 L493.0,1041.1 L495.6,1041.3 L493.0,1041.1 L473.3,1032.4 L468.4,1030.2 L458.2,1025.8 L458.3,1010.8 L465.2,1010.1 L458.3,1010.8 L434.8,1011.1 L429.9,1010.2 L434.8,1011.1 L423.3,1011.0 L412.3,1011.3 L402.0,1011.5 L391.3,1011.6 L391.7,1035.0 L392.6,1040.3 L391.7,1035.0 L374.8,1035.2 L374.1,1036.1 L374.8,1035.2 L374.7,1027.7 L374.4,1011.8 L349.7,1012.4 L349.4,1001.1 L359.8,1001.7 L349.4,1001.1 L340.4,1001.3 L322.5,1001.8 L322.2,1013.2 L328.1,1013.9 L322.2,1013.2 L340.8,1012.6 L348.5,1012.5 L349.7,1012.4 L374.4,1011.8 L374.7,1027.7 L374.8,1035.2 L375.0,1046.1 L391.8,1046.2 L402.5,1046.2 L412.9,1046.0 L413.1,1067.4 L416.0,1061.1 L413.1,1067.4 L416.0,1061.1 L413.1,1067.4 L416.0,1061.1 L413.1,1067.4 L412.9,1046.0 L424.0,1046.8 L444.2,1047.1 L444.1,1071.5 L444.3,1075.6 L467.8,1092.2 L468.4,1099.8 L457.0,1116.1 L456.6,1115.2 L457.0,1116.1 L458.0,1115.8 L457.0,1116.1 L468.4,1099.8 L472.2,1101.3 L475.4,1097.4 L485.7,1104.6 L492.2,1109.0 L519.7,1128.1 L528.2,1133.9 L542.3,1133.8 L540.5,1133.2 L542.3,1133.8 L542.4,1116.1 L542.5,1103.2 L560.7,1103.2 L575.7,1103.2 L575.7,1086.5 L575.7,1078.2 L574.0,1076.6 L575.7,1078.2 L575.8,1063.1 L573.4,1062.4 L575.8,1063.1 L575.7,1078.2 L591.1,1085.0 L594.0,1086.3 L617.4,1096.7 L617.0,1095.8 L617.4,1096.7 L617.5,1078.1 L617.5,1063.0 L627.2,1063.0 L627.3,1047.3 L627.3,1031.0 L627.4,1017.5 L627.4,1005.6 L627.4,993.6 L627.5,984.4 L623.6,983.8 L627.5,984.4 L617.3,983.8 L627.5,984.4 L627.5,975.3 L626.5,975.8 L627.5,975.3 L623.9,974.7 L627.5,975.3 L618.9,972.5 L627.5,975.3 L636.2,979.2 L635.2,979.7 L636.2,979.2 L644.4,982.9 L644.0,982.0 L644.4,982.9 L651.6,983.1 L648.7,976.0 L651.6,983.1 L659.5,979.2 L668.4,975.2 L668.1,976.3 L668.4,975.2 L668.4,984.4 L668.3,991.7 L666.9,992.1 L668.3,991.7 L668.3,993.5 L668.3,1005.7 L667.5,1016.8 L668.3,1005.7 L647.9,1005.6 L648.0,965.1 L647.2,964.4 L648.0,965.1 L648.8,964.4 L648.0,965.1 L627.5,965.1 L627.5,975.3 L615.3,970.9 L627.5,975.3 L594.4,960.6 L608.5,967.8 L594.4,960.6 L594.4,952.4 L594.5,942.5 L594.5,932.6 L594.5,927.2 L597.7,922.8 L605.0,912.9 L627.6,912.9 L648.1,912.9 L648.1,903.1 L647.4,902.5 L648.1,903.1 L648.2,893.2 L648.2,883.3 L648.2,873.5 L648.3,863.9 L648.4,854.4 L647.6,851.1 L648.4,854.4 L648.3,839.6 L647.6,838.0 L648.3,839.6 L648.3,825.9 L648.4,809.7 L648.4,801.7 L648.4,778.1 L648.4,771.2 L647.7,766.4 L648.4,771.2 L647.7,764.8 L648.4,771.2 L647.7,762.9 L648.4,771.2 L660.7,770.6 L661.8,778.9 L660.7,770.6 L648.4,771.2 L635.2,771.8 L622.4,772.4 L609.6,773.0 L608.4,758.2 L610.4,756.5 L609.0,756.1 L610.4,756.5 L620.8,748.6 L628.0,743.1 L633.0,739.4 L643.8,730.8 L648.5,727.6 L648.5,719.2 L648.6,698.8 L648.6,692.4 L648.8,675.3 L648.8,673.4 L648.8,659.3 L648.8,646.6 L648.8,637.5 L648.9,622.3 L648.9,615.2 L648.9,590.7 L648.9,582.4 L649.0,560.0 L649.0,551.6 L649.1,537.4 L649.0,523.2 L649.2,509.0 L649.1,494.9 L649.2,480.7 L648.5,476.2 L649.2,480.7 L649.2,466.5 L649.2,451.7 L649.2,438.1 L649.3,418.4 L649.3,408.0 L649.3,404.2 L649.4,390.0 L649.4,381.2 L653.3,375.7 L650.3,375.0 L653.3,375.7 L649.4,381.2 L649.6,332.2 L649.6,328.8 L649.6,317.0 L648.8,312.7 L649.6,317.0 L649.6,303.6 L649.6,301.6 L649.6,291.3 L649.6,279.5 L649.6,270.6 L649.6,261.6 L649.9,265.1 L649.6,261.6 L649.7,249.6 L649.7,217.5 L649.7,209.5 L649.8,199.9 L649.8,190.5 L649.8,178.0 L649.9,165.2 L649.9,161.4 L649.9,152.4 L649.9,149.5 L649.9,138.9 L649.9,128.5 L649.9,118.3 L650.0,106.9 L650.0,83.8 L661.5,70.6 L666.5,71.1 L672.2,72.0 L666.5,71.1 L673.5,72.0 L666.5,71.1 L661.5,70.6 L650.0,83.8 L650.0,106.9 L649.9,118.3 L649.9,128.5 L649.9,138.9 L649.9,149.5 L649.9,152.4 L649.9,161.4 L649.9,165.2 L649.8,178.0 L649.8,190.5 L649.8,199.9 L649.7,209.5 L649.7,217.5 L649.7,249.6 L649.6,261.6 L649.6,270.6 L649.6,279.5 L649.6,291.3 L649.6,301.6 L649.6,303.6 L649.6,317.0 L649.6,328.8 L649.6,332.2 L649.4,381.2 L649.4,390.0 L649.3,404.2 L649.3,408.0 L624.0,433.9 L620.7,437.6 L609.0,450.2 L581.2,480.4 L551.8,511.0 L512.5,503.2 L495.2,554.8 L483.0,542.0 L455.9,539.2 L465.0,518.7 L452.6,488.6 L451.7,487.0 L450.7,486.8 L451.7,487.0 L452.6,488.6 L418.2,520.6 L380.4,521.1 L373.6,506.0 L374.0,505.1 L373.6,506.0 L353.1,505.9 L353.1,516.0 L352.4,515.3 L353.1,516.0 L351.4,515.3 L353.1,516.0 L337.7,527.1 L337.0,528.0 L337.7,527.1 L338.5,528.0 L337.7,527.1 L336.4,528.0 L337.7,527.1 L335.8,528.0 L337.7,527.1 L335.2,527.9 L337.7,527.1 L334.6,527.9 L337.7,527.1 L333.9,527.9 L337.7,527.1 L323.8,507.3 L314.2,484.3 L313.7,483.4 L314.2,484.3 L315.2,483.8 L314.2,484.3 L313.3,484.9 L314.2,484.3 L315.2,483.7 L314.2,484.3 L314.8,485.3 L314.2,484.3 L313.0,485.9 L314.2,484.3 L314.4,486.6 L314.2,484.3 L312.4,488.0 L314.2,484.3 L323.8,507.3 L307.1,505.8 L274.9,505.7 L252.1,505.7 L226.9,505.7 L216.4,505.7 L192.6,505.7 L181.2,505.7 L174.7,505.7 L156.6,505.7 L131.4,505.6 L115.1,505.6 L114.9,518.0 L113.3,520.2 L106.3,527.7 L95.6,539.2 L89.2,533.1 L85.2,532.0 L84.1,531.1 L64.7,530.8 L72.0,531.7 L64.7,530.8 L84.1,531.1 L85.2,532.0 L89.2,533.1 L95.6,539.2 L131.1,572.2 L131.7,579.8 L115.5,604.0 L128.5,619.6 L132.1,627.4 L135.1,634.3 L141.4,648.4 L139.6,646.3 L141.4,648.4 L142.5,651.0 L144.8,655.9 L147.7,662.6 L154.3,677.3 L156.8,682.9 L162.5,695.7 L168.6,709.4 L182.2,733.7 L195.7,735.5 L207.5,736.8 L244.5,765.8 L250.9,780.3 L266.5,780.4 L269.5,780.4 L282.5,807.9 L284.8,812.5 L287.5,815.2 L284.8,812.5 L293.1,825.0 L283.7,831.2 L275.8,836.4 L268.8,824.6 L269.0,831.1 L269.3,839.0 L269.8,854.4 L270.0,860.7 L270.5,875.8 L270.9,887.8 L256.1,888.3 L241.5,888.8 L241.7,895.1 L232.8,892.1 L232.5,898.2 L228.1,898.9 L228.9,907.4 L228.4,910.2 L221.3,911.2 L228.4,910.2 L228.9,907.4 L228.1,898.9 L232.5,898.2 L232.8,892.1 L241.7,895.1 L242.0,912.5 L178.9,911.7 L168.0,911.7 L143.1,915.0 L133.6,909.2 L118.3,913.8 L118.7,900.5 L118.3,913.8 L133.6,909.2 L143.1,915.0 L168.0,911.7 L178.9,911.7 L242.0,912.5 L241.7,895.1 L241.5,888.8 L256.1,888.3 L270.9,887.8 L270.5,875.8 L270.0,860.7 L269.8,854.4 L269.3,839.0 L269.0,831.1 L268.8,824.6 L275.8,836.4 L283.7,831.2 L293.1,825.0 L284.8,812.5 L282.5,807.9 L310.8,798.9 L316.3,798.8 L330.4,805.8 L332.8,805.0 L336.1,801.7 L337.7,799.6 L343.1,799.1 L345.9,799.2 L351.1,801.9 L354.9,802.9 L355.4,793.2 L371.2,795.6 L408.7,832.4 L413.3,836.8 L364.0,835.0 L377.6,836.4 L364.0,835.0 L384.7,835.1 L364.0,835.0 L413.3,836.8 L431.3,853.6 L437.4,859.4 L453.2,874.2 L474.2,893.9 L480.0,899.4 L484.8,903.8 L494.5,912.9 L498.0,915.9 L504.7,920.7 L520.4,927.6 L531.4,932.6 L542.8,937.7 L561.0,945.8 L568.4,949.1 L567.7,952.4 L571.1,959.0 L574.5,960.5 L583.6,955.8 L594.4,960.6 L627.5,975.3 L636.2,979.2 L644.4,982.9 L651.6,983.1 L651.5,985.9 L659.4,989.5 L668.3,993.5 L719.8,1016.5 L735.8,1023.6 L741.6,1026.1 L746.6,1028.3 L751.3,1030.4 L757.7,1033.3 L777.9,1041.9 L778.1,1047.3 L778.4,1053.1 L778.5,1069.4 L778.7,1083.5 L778.6,1093.5 L778.7,1101.6 L778.6,1117.0 L778.6,1132.4 L778.6,1150.2 L778.5,1162.5 L799.9,1170.2 L820.9,1177.4 L828.0,1179.2" stroke="#ff7a18" pathlength="1"></path> <circle cx="828.0" cy="1179.2" r="9" fill="#ff7a18" stroke="white" stroke-width="2.5"></circle>
+</svg>
+<div class="rt-km">
+76.9 km of walking
+</div>
+</figure>
+<figure class="rt-2opt">
+<div class="rt-title">
+After 2-opt
+</div>
+<svg viewbox="0 0 900 1251" style="height: 520px; width: auto;" role="img" aria-label="After 2-opt route, 68.9 km">
+<image href="images/route_bg.png" width="900" height="1251"></image> <path d="M828.0,1179.2 L820.9,1177.4 L799.9,1170.2 L778.5,1162.5 L757.4,1154.9 L746.5,1151.0 L735.6,1147.3 L719.6,1141.6 L719.6,1132.5 L719.8,1116.3 L719.8,1103.4 L719.7,1083.5 L712.3,1081.2 L695.5,1078.2 L695.4,1063.1 L695.5,1047.3 L689.9,1048.2 L695.5,1047.3 L695.6,1031.1 L695.6,1010.4 L693.8,1010.2 L690.8,1005.7 L668.3,1005.7 L667.5,1016.8 L668.3,1005.7 L668.3,993.5 L668.3,991.7 L666.9,992.1 L668.3,991.7 L668.4,984.4 L668.4,975.2 L668.1,976.3 L668.4,975.2 L659.5,979.2 L651.6,983.1 L648.7,976.0 L651.6,983.1 L644.4,982.9 L644.0,982.0 L644.4,982.9 L636.2,979.2 L635.2,979.7 L636.2,979.2 L636.2,984.5 L627.5,984.4 L617.3,983.8 L627.5,984.4 L623.6,983.8 L627.5,984.4 L627.5,975.3 L615.3,970.9 L627.5,975.3 L618.9,972.5 L627.5,975.3 L626.5,975.8 L627.5,975.3 L623.9,974.7 L627.5,975.3 L627.5,965.1 L648.0,965.1 L648.8,964.4 L648.0,965.1 L647.2,964.4 L648.0,965.1 L648.0,952.5 L648.0,942.6 L648.1,932.7 L648.1,922.8 L648.1,912.9 L648.1,903.1 L647.4,902.5 L648.1,903.1 L648.2,893.2 L648.2,883.3 L648.2,873.5 L648.3,863.9 L648.4,854.4 L647.6,851.1 L648.4,854.4 L648.3,839.6 L647.6,838.0 L648.3,839.6 L648.3,825.9 L648.4,809.7 L648.4,801.7 L648.4,778.1 L648.4,771.2 L647.7,766.4 L648.4,771.2 L647.7,764.8 L648.4,771.2 L647.7,762.9 L648.4,771.2 L660.7,770.6 L661.8,778.9 L660.7,770.6 L648.4,771.2 L635.2,771.8 L622.4,772.4 L609.6,773.0 L608.4,758.2 L610.4,756.5 L609.0,756.1 L610.4,756.5 L620.8,748.6 L628.0,743.1 L633.0,739.4 L643.8,730.8 L648.5,727.6 L648.5,719.2 L648.6,698.8 L648.6,692.4 L648.8,675.3 L648.8,673.4 L648.8,659.3 L648.8,646.6 L648.8,637.5 L648.9,622.3 L648.9,615.2 L648.9,590.7 L648.9,582.4 L649.0,560.0 L649.0,551.6 L649.1,537.4 L649.0,523.2 L649.2,509.0 L649.1,494.9 L649.2,480.7 L648.5,476.2 L649.2,480.7 L649.2,466.5 L649.2,451.7 L649.2,438.1 L649.3,418.4 L649.3,408.0 L649.3,404.2 L649.4,390.0 L649.4,381.2 L653.3,375.7 L650.3,375.0 L653.3,375.7 L649.4,381.2 L649.6,332.2 L649.6,328.8 L649.6,317.0 L648.8,312.7 L649.6,317.0 L649.6,303.6 L649.6,301.6 L649.6,291.3 L649.6,279.5 L649.6,270.6 L649.6,261.6 L649.9,265.1 L649.6,261.6 L649.7,249.6 L649.7,217.5 L649.7,209.5 L649.8,199.9 L649.8,190.5 L649.8,178.0 L649.9,165.2 L649.9,161.4 L649.9,152.4 L649.9,149.5 L649.9,138.9 L649.9,128.5 L649.9,118.3 L650.0,106.9 L650.0,83.8 L661.5,70.6 L666.5,71.1 L673.5,72.0 L666.5,71.1 L672.2,72.0 L666.5,71.1 L661.5,70.6 L650.0,83.8 L650.0,106.9 L649.9,118.3 L649.9,128.5 L649.9,138.9 L649.9,149.5 L649.9,152.4 L649.9,161.4 L649.9,165.2 L649.8,178.0 L649.8,190.5 L649.8,199.9 L649.7,209.5 L649.7,217.5 L649.7,249.6 L649.6,261.6 L649.6,270.6 L649.6,279.5 L649.6,291.3 L649.6,301.6 L649.6,303.6 L649.6,317.0 L649.6,328.8 L649.6,332.2 L649.4,381.2 L649.4,390.0 L649.3,404.2 L649.3,408.0 L624.0,433.9 L620.7,437.6 L609.0,450.2 L581.2,480.4 L551.8,511.0 L512.5,503.2 L495.2,554.8 L483.0,542.0 L455.9,539.2 L465.0,518.7 L452.6,488.6 L451.7,487.0 L450.7,486.8 L451.7,487.0 L452.6,488.6 L418.2,520.6 L380.4,521.1 L373.6,506.0 L374.0,505.1 L373.6,506.0 L353.1,505.9 L353.1,516.0 L352.4,515.3 L353.1,516.0 L351.4,515.3 L353.1,516.0 L337.7,527.1 L336.4,528.0 L337.7,527.1 L338.5,528.0 L337.7,527.1 L337.0,528.0 L337.7,527.1 L335.8,528.0 L337.7,527.1 L335.2,527.9 L337.7,527.1 L334.6,527.9 L337.7,527.1 L333.9,527.9 L337.7,527.1 L323.8,507.3 L314.2,484.3 L313.0,485.9 L314.2,484.3 L313.7,483.4 L314.2,484.3 L314.4,486.6 L314.2,484.3 L313.3,484.9 L314.2,484.3 L314.8,485.3 L314.2,484.3 L315.2,483.7 L314.2,484.3 L315.2,483.8 L314.2,484.3 L312.4,488.0 L314.2,484.3 L323.8,507.3 L307.1,505.8 L274.9,505.7 L252.1,505.7 L226.9,505.7 L216.4,505.7 L192.6,505.7 L181.2,505.7 L174.7,505.7 L156.6,505.7 L131.4,505.6 L115.1,505.6 L114.9,518.0 L113.3,520.2 L106.3,527.7 L95.6,539.2 L89.2,533.1 L85.2,532.0 L84.1,531.1 L64.7,530.8 L72.0,531.7 L64.7,530.8 L84.1,531.1 L85.2,532.0 L89.2,533.1 L95.6,539.2 L131.1,572.2 L131.7,579.8 L115.5,604.0 L128.5,619.6 L132.1,627.4 L135.1,634.3 L141.4,648.4 L139.6,646.3 L141.4,648.4 L131.2,648.8 L131.2,663.1 L131.2,677.3 L131.2,696.0 L118.5,696.0 L118.5,713.9 L106.0,713.9 L89.1,713.8 L90.5,726.9 L91.3,734.8 L92.4,746.2 L96.2,779.8 L104.7,825.2 L104.4,840.4 L105.1,861.5 L134.3,895.9 L141.3,907.6 L143.1,915.0 L133.6,909.2 L118.3,913.8 L118.7,900.5 L118.3,913.8 L133.6,909.2 L143.1,915.0 L168.0,911.7 L178.9,911.7 L242.0,912.5 L241.7,895.1 L232.8,892.1 L232.5,898.2 L228.1,898.9 L228.9,907.4 L228.4,910.2 L221.3,911.2 L228.4,910.2 L228.9,907.4 L228.1,898.9 L232.5,898.2 L232.8,892.1 L241.7,895.1 L241.5,888.8 L256.1,888.3 L270.9,887.8 L270.5,875.8 L270.0,860.7 L269.8,854.4 L269.3,839.0 L269.0,831.1 L268.8,824.6 L275.8,836.4 L283.7,831.2 L293.1,825.0 L284.8,812.5 L287.5,815.2 L284.8,812.5 L282.5,807.9 L269.5,780.4 L267.3,775.5 L266.6,766.1 L266.6,751.7 L265.9,758.9 L266.6,751.7 L278.9,751.7 L278.9,732.0 L290.6,731.9 L290.6,721.8 L288.7,721.2 L290.6,721.8 L290.6,731.9 L290.6,751.7 L290.6,766.0 L305.1,766.7 L299.5,771.7 L305.1,766.7 L328.7,755.2 L325.0,753.4 L321.8,751.0 L321.8,750.0 L321.8,751.0 L325.0,753.4 L328.7,755.2 L337.7,756.8 L336.7,751.4 L337.7,756.8 L338.2,746.6 L337.7,756.8 L371.2,795.6 L371.7,794.7 L371.2,795.6 L408.7,832.4 L405.0,830.1 L408.7,832.4 L402.4,825.6 L408.7,832.4 L406.5,831.5 L408.7,832.4 L411.0,812.2 L388.8,814.9 L411.0,812.2 L415.7,802.4 L409.8,792.8 L398.4,788.1 L368.1,762.3 L365.0,775.1 L368.1,762.3 L365.6,726.6 L370.2,714.2 L370.0,704.2 L370.0,694.3 L390.0,694.3 L428.3,697.1 L427.2,697.4 L428.3,697.1 L428.4,732.2 L427.6,771.6 L436.4,784.3 L427.6,771.6 L444.6,770.7 L445.6,779.2 L444.6,770.7 L480.8,768.2 L492.1,767.4 L517.6,823.4 L525.4,831.5 L519.7,837.5 L525.4,831.5 L520.4,837.2 L525.4,831.5 L529.3,832.9 L510.1,840.4 L515.2,853.1 L512.5,853.4 L515.2,853.1 L519.3,852.4 L515.2,853.1 L501.4,858.3 L501.4,854.3 L497.1,853.6 L501.4,854.3 L501.4,858.3 L501.4,863.9 L501.3,872.7 L501.3,883.3 L501.4,893.1 L500.6,894.0 L501.4,893.1 L520.5,893.1 L515.8,894.0 L520.5,893.1 L527.4,893.1 L531.3,893.1 L530.5,893.9 L531.3,893.1 L527.4,893.1 L524.2,883.2 L522.8,878.9 L534.0,873.2 L522.8,878.9 L545.8,867.9 L548.7,854.1 L554.8,842.0 L553.1,841.8 L554.8,842.0 L552.5,838.3 L536.6,844.6 L529.9,846.5 L536.6,844.6 L541.7,857.5 L540.2,851.6 L541.7,857.5 L545.8,867.9 L534.3,873.0 L545.8,867.9 L537.5,873.2 L545.8,867.9 L546.8,883.3 L547.7,889.3 L543.4,894.0 L543.4,892.9 L543.4,894.0 L542.5,894.1 L543.4,894.0 L539.5,899.3 L537.7,903.5 L533.2,912.9 L531.1,913.8 L533.2,912.9 L520.4,912.9 L516.4,913.8 L520.4,912.9 L519.0,913.8 L520.4,912.9 L511.7,912.3 L520.4,912.9 L516.3,912.3 L520.4,912.9 L520.4,903.0 L521.2,906.4 L520.4,903.0 L484.8,903.8 L484.8,905.0 L484.8,903.8 L484.4,902.5 L484.8,903.8 L480.0,899.4 L480.7,893.1 L480.7,883.3 L480.7,873.4 L477.3,874.2 L480.7,873.4 L453.2,874.2 L449.2,871.6 L453.2,874.2 L450.1,870.4 L453.2,874.2 L445.8,866.3 L453.2,874.2 L437.4,859.4 L442.8,863.5 L437.4,859.4 L446.0,850.3 L451.5,843.3 L446.0,850.3 L452.9,856.8 L450.8,856.1 L452.9,856.8 L446.0,850.3 L437.4,859.4 L431.3,853.6 L413.3,836.8 L412.5,837.7 L413.3,836.8 L364.0,835.0 L377.6,836.4 L364.0,835.0 L384.7,835.1 L364.0,835.0 L413.3,836.8 L431.3,853.6 L437.4,859.4 L453.2,874.2 L474.2,893.9 L474.2,895.1 L474.2,893.9 L470.4,891.5 L474.2,893.9 L465.3,886.7 L474.2,893.9 L467.7,886.8 L474.2,893.9 L474.2,892.9 L474.2,893.9 L470.5,889.5 L474.2,893.9 L480.0,899.4 L478.7,899.3 L480.0,899.4 L484.8,903.8 L484.7,902.8 L484.8,903.8 L494.5,912.9 L489.9,909.7 L494.5,912.9 L492.3,909.9 L494.5,912.9 L498.0,915.9 L503.6,912.2 L498.0,915.9 L496.4,915.6 L498.0,915.9 L500.9,923.1 L500.0,933.3 L501.4,932.5 L500.0,933.3 L519.6,932.6 L520.4,927.6 L517.9,927.5 L520.4,927.6 L519.4,928.1 L520.4,927.6 L519.1,926.4 L520.4,927.6 L518.8,926.2 L520.4,927.6 L523.6,924.3 L521.1,922.1 L523.6,924.3 L521.1,921.0 L523.6,924.3 L520.4,927.6 L518.2,927.6 L520.4,927.6 L517.1,925.5 L520.4,927.6 L514.4,925.9 L520.4,927.6 L531.4,932.6 L528.7,930.6 L531.4,932.6 L532.5,932.3 L531.4,932.6 L542.8,937.7 L561.0,945.8 L557.9,945.3 L561.0,945.8 L556.6,944.7 L561.0,945.8 L561.0,932.7 L576.1,932.6 L576.1,922.8 L576.1,912.9 L582.8,913.8 L576.1,912.9 L576.9,912.3 L576.1,912.9 L594.5,912.9 L605.0,912.9 L612.3,902.9 L610.4,904.3 L612.3,902.9 L609.6,905.4 L612.3,902.9 L605.0,912.9 L608.1,907.6 L605.0,912.9 L606.1,912.9 L605.0,912.9 L597.7,922.8 L600.2,920.8 L597.7,922.8 L599.7,921.6 L597.7,922.8 L597.9,923.9 L597.7,922.8 L594.5,927.2 L592.8,928.3 L594.5,927.2 L593.4,927.5 L594.5,927.2 L590.5,932.6 L590.3,931.7 L590.5,932.6 L580.8,945.8 L582.5,942.4 L580.8,945.8 L584.1,942.8 L580.8,945.8 L584.6,942.1 L580.8,945.8 L584.3,952.4 L594.4,952.4 L593.7,951.8 L594.4,952.4 L594.4,960.6 L608.5,967.8 L594.4,960.6 L601.7,963.1 L594.4,960.6 L594.3,984.3 L590.3,984.3 L592.1,989.9 L590.3,984.3 L576.0,984.4 L560.9,984.4 L560.8,1005.5 L560.1,1006.4 L560.8,1005.5 L561.7,998.4 L560.8,1005.5 L542.6,1005.9 L542.7,997.8 L539.0,1002.9 L520.2,995.1 L519.4,998.8 L520.2,995.1 L520.1,1010.7 L517.6,1010.0 L520.1,1010.7 L519.3,1030.8 L510.6,1041.3 L512.0,1040.8 L510.6,1041.3 L505.5,1040.1 L500.2,1044.4 L493.0,1041.1 L495.6,1041.3 L493.0,1041.1 L473.3,1032.4 L468.4,1030.2 L458.2,1025.8 L458.3,1010.8 L465.2,1010.1 L458.3,1010.8 L434.8,1011.1 L429.9,1010.2 L434.8,1011.1 L423.3,1011.0 L412.3,1011.3 L402.0,1011.5 L391.3,1011.6 L374.4,1011.8 L349.7,1012.4 L349.4,1001.1 L359.8,1001.7 L349.4,1001.1 L340.4,1001.3 L322.5,1001.8 L322.2,1013.2 L328.1,1013.9 L322.2,1013.2 L340.8,1012.6 L348.5,1012.5 L349.7,1012.4 L374.4,1011.8 L374.7,1027.7 L374.8,1035.2 L374.1,1036.1 L374.8,1035.2 L391.7,1035.0 L392.6,1040.3 L391.7,1035.0 L391.8,1046.2 L402.5,1046.2 L412.9,1046.0 L413.1,1067.4 L416.0,1061.1 L413.1,1067.4 L416.0,1061.1 L413.1,1067.4 L416.0,1061.1 L413.1,1067.4 L412.9,1046.0 L424.0,1046.8 L444.2,1047.1 L444.1,1071.5 L444.3,1075.6 L467.8,1092.2 L468.4,1099.8 L457.0,1116.1 L456.6,1115.2 L457.0,1116.1 L458.0,1115.8 L457.0,1116.1 L468.4,1099.8 L472.2,1101.3 L475.4,1097.4 L485.7,1104.6 L492.2,1109.0 L519.7,1128.1 L528.2,1133.9 L542.3,1133.8 L540.5,1133.2 L542.3,1133.8 L542.4,1116.1 L542.5,1103.2 L542.5,1086.5 L542.6,1071.6 L542.5,1063.3 L560.8,1063.0 L575.8,1063.1 L573.4,1062.4 L575.8,1063.1 L575.7,1078.2 L574.0,1076.6 L575.7,1078.2 L591.1,1085.0 L594.0,1086.3 L617.4,1096.7 L617.0,1095.8 L617.4,1096.7 L617.5,1078.1 L617.5,1063.0 L616.8,1065.3 L617.5,1063.0 L617.6,1047.3 L611.7,1031.0 L610.7,1030.8 L611.7,1031.0 L617.6,1047.3 L627.3,1047.3 L647.8,1047.2 L641.6,1046.6 L647.8,1047.2 L641.6,1046.6 L647.8,1047.2 L647.7,1063.0 L647.6,1078.2 L662.5,1078.2 L662.6,1097.4 L663.1,1128.8 L677.8,1128.8 L695.4,1132.8 L695.5,1140.9 L707.8,1140.8 L719.6,1141.6 L735.6,1147.3 L746.5,1151.0 L757.4,1154.9 L778.5,1162.5 L799.9,1170.2 L820.9,1177.4 L828.0,1179.2" stroke="#f2c14e" pathlength="1"></path> <circle cx="828.0" cy="1179.2" r="9" fill="#f2c14e" stroke="white" stroke-width="2.5"></circle>
+</svg>
+<div class="rt-km">
+68.9 km of walking
+</div>
+</figure>
+</div>
+</div><div class="column" style="width:26%;">
+<ul>
+<li>2-opt cuts the walk by <strong>10%</strong>, from 76.9 to 68.9 km</li>
+<li><strong>14 hours</strong> of walking at 5 km/h</li>
+<li><strong>20 hours</strong> with 2 minutes per doorstep</li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section id="your-turn" class="title-slide slide level1 center" data-background-color="#1f1426">
+<h1>Your turn</h1>
+
+</section>
+<section id="lab-the-embassy-walk" class="slide level2">
+<h2>Lab: the embassy walk</h2>
+<ol type="1">
+<li><strong>Geocode</strong> <code>embassy_addresses.csv</code> with the Census batch geocoder; load it in QGIS; inspect and fix the non-exact matches</li>
+<li><strong>Reproject</strong> the embassies and <code>Roadway_Block</code> to EPSG:26985</li>
+<li><strong>OD matrix</strong> with QNEAT3 (<em>OD Matrix from Layers as Table, m:n</em>)</li>
+<li><strong>Solve</strong>: run <code>nearest_neighbor_simple.py</code>, then <code>two_opt_simple.py</code>, with the OD table selected</li>
+<li><strong>Map the route</strong>: join <code>embassy_order</code> (or <code>embassy_order_2opt</code>) to the embassies (<em>Join Attributes by Field Value</em>), then <strong>Processing ▸ Points to Path</strong>, ordered by <code>visit_order</code></li>
+<li><strong>Report</strong> your total distance and a map of the route</li>
+</ol>
+</section>
+<section id="discussion" class="slide level2">
+<h2>Discussion</h2>
+<ul>
+<li>Change <code>START</code> in the script. Does the 2-opt route length depend on where you begin?</li>
+<li>Trick-or-treating lasts about <strong>3 hours</strong>. Which embassies would you visit to collect the most candy in that time? (This is the <strong>orienteering problem</strong>.)</li>
+<li>What does a straight-line route miss? What does our street network miss (crossings, one-way streets, security perimeters)?</li>
+<li>Where else do routing problems appear in environmental work? (Field sampling, wildlife surveys, waste collection, delivery fleets)</li>
+</ul>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Environmental GIS · Halloween Spooktacular</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="embassy_walk_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="embassy_walk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="embassy_walk_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="embassy_walk_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"theme":"chalkboard"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
