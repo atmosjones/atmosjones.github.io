@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crop-Specific SIF Code</title>
+<style>
+  :root { --bg: #ffffff; --text: #1f2933; --muted: #5f6b76; --link: #1f5f7a; --line: #d9dfe4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #14191e; --text: #e6eaee; --muted: #a3aeb8; --link: #7cc0dd; --line: #323b44; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 42rem; margin: 0 auto; padding: 3rem 16px; }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .75rem; }
+  h2 { font-size: 1.1rem; margin: 2.25rem 0 .5rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  a { color: var(--link); }
+  .authors, .status { color: var(--muted); }
+  .authors { margin: 0 0 .25rem; }
+  .status { margin: 0; }
+  ul { padding-left: 1.2rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Resolving Crop-Specific Solar-Induced Fluorescence using Overlapping OCO-2 Target-Mode Soundings</h1>
+  <p class="authors">Taylor S. Jones, Jonathan F. Dooley, Russell Goebel, Leeza Moldavchuk, Aamer Ali, Jia Chen</p>
+  <p class="status">Submitted to <em>Geophysical Research Letters</em></p>
+
+  <h2>Analysis code</h2>
+  <p>The R scripts used in the paper. The <a href="https://github.com/atmosjones/atmosjones.github.io/tree/main/SIF">README</a> explains how to run them and which script makes each figure.</p>
+  <ul>
+    <li><a href="https://github.com/atmosjones/atmosjones.github.io/tree/main/SIF/code">Browse the scripts on GitHub</a></li>
+    <li><a href="https://github.com/atmosjones/atmosjones.github.io/blob/main/SIF/code/run_all.sh">run_all.sh</a>: runs the main analysis in order</li>
+    <li><a href="https://github.com/atmosjones/atmosjones.github.io/blob/main/SIF/code/downscale_sif_inversion.R">downscale_sif_inversion.R</a>: the grid inversion</li>
+    <li><a href="https://github.com/atmosjones/atmosjones.github.io/blob/main/SIF/code/downscale_sif_by_crop_cdl30.R">downscale_sif_by_crop_cdl30.R</a>: the crop-class inversion</li>
+  </ul>
+
+  <h2>Data</h2>
+  <p>The downscaled data and SIFnet data will be added here before publication. Sources for the input data are listed in the paper's Data Availability section.</p>
+</main>
+</body>
+</html>
